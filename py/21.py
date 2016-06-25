@@ -14,5 +14,4 @@ if __name__ == '__main__':
 			ami.append(i)
 		cache[i] = s
 
-	print ami
 	print sum(ami)
