@@ -3,23 +3,25 @@
 
 int is_palindromic(int n);
 
-int main(int argc, char* argv[]) {
-    if (is_palindromic(121)) printf("yes\n");
-    else printf("no\n");
+int main(int argc, char* argv[])
+{
+    int i, j, k, m = 0;
+    for (i = 100; i < 1000; i++) {
+        for (j = i; j < 1000; j++) {
+            k = i*j;
+            if (is_palindromic(k) && k > m)
+                m = k;
+        }
+    }
+    printf("Result: %d\n", m);
+    return 0;
 }
 
-int is_palindromic(int n) {
-    if (n < 10) return 1;
-    int x = 10, m = 1, i;
-    while (n > x) {
-        x *= 10;
-        m++;
-    }
-    printf("%d\n", m);
-    for (i = 0; i <= m/2; i++) {
-    printf("%f\n", pow(10, i));
-    printf("%f\n", pow(10, m-i));
-        if (n/pow(10, i) != n/pow(10, m-i))
+int is_palindromic(int n)
+{
+    int i, d = 1 + log10(n);
+    for (i = 0; i < floor(d/2); i++) {
+        if ((int) (n / pow(10, d-1-i)) % 10 != (int) (n / pow(10, i)) % 10)
             return 0;
     }
     return 1;
